@@ -1,0 +1,31 @@
+body{
+    font-family: sans-serif;
+    text-align: center;
+    padding: 50px;
+    background-color: gray;
+}
+
+h1{
+ color: white;
+}
+#count{
+    font-size: 80px; 
+    margin: 20px 0;
+    color: white;
+}
+
+button{
+    font-size: 20px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+.positive{
+    color: green;
+}
+.negative{
+    color: red;
+}
+.zero{
+    color: black;
+}
