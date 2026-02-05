@@ -1,23 +1,26 @@
-//select all the elements that we need
-
+// select all the elements
 const countDisplay = document.querySelector("#count");
 const incrementBtn = document.querySelector("#increase");
 const decrementBtn = document.querySelector("#decrease");
 const resetBtn = document.querySelector("#reset");
+const doubleBtn = document.querySelector("#double"); // ✅ New
 
-// initialize count variable
+// limits
+const MIN = -10;
+const MAX = 10;
+
+// initialize count
 let count = 0;
 
-//create function to update the display
+// function to update UI
 function updateDisplay() {
-  //update the text
-
+  // update number
   countDisplay.textContent = count;
 
-  //Remove all color classes first
+  // remove old classes
   countDisplay.classList.remove("positive", "negative", "zero");
 
-  //add color based on the value of count
+  // add color based on value
   if (count > 0) {
     countDisplay.classList.add("positive");
   } else if (count < 0) {
@@ -25,24 +28,50 @@ function updateDisplay() {
   } else {
     countDisplay.classList.add("zero");
   }
+
+  // ✅ Disable buttons at limits (pro UX)
+  incrementBtn.disabled = count >= MAX;
+  decrementBtn.disabled = count <= MIN;
+  doubleBtn.disabled = count * 2 > MAX || count * 2 < MIN;
 }
 
-
-//add event listeners to buttons
-incrementBtn.addEventListener("click", function() {
-  count++; //increment count by 1
-  updateDisplay(); //update the display
+// Increase
+incrementBtn.addEventListener("click", function () {
+  if (count < MAX) {
+    count++;
+    updateDisplay();
+  }
 });
 
-decrementBtn.addEventListener("click", function() {
-  count--; //decrement count by 1
-  updateDisplay(); //update the display
+// Decrease
+decrementBtn.addEventListener("click", function () {
+  if (count > MIN) {
+    count--;
+    updateDisplay();
+  }
 });
 
-resetBtn.addEventListener("click", function() {
-  count = 0; //reset count to 0
-  updateDisplay(); //update the display
+// Reset
+resetBtn.addEventListener("click", function () {
+  count = 0;
+  updateDisplay();
 });
 
-//initial display update
+// ✅ Double
+doubleBtn.addEventListener("click", function () {
+  const doubled = count * 2;
+
+  // enforce limits
+  if (doubled > MAX) {
+    count = MAX;
+  } else if (doubled < MIN) {
+    count = MIN;
+  } else {
+    count = doubled;
+  }
+
+  updateDisplay();
+});
+
+// initial render
 updateDisplay();
