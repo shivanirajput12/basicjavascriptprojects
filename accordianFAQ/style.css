@@ -1,0 +1,96 @@
+body {
+  font-family: Arial;
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: rgb(175, 174, 174);
+}
+
+.accordion-item {
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.accordion-header {
+  padding: 15px 20px;
+  background: #f8f9fa;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.accordion-header:focus {
+  outline: 2px solid #007bff;
+  background: #e7f1ff;
+}
+
+.accordion-header:hover {
+  background: #e9ecef;
+}
+
+.accordion-header h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.accordion-header .icon {
+  font-size: 20px;
+  transition: transform 0.3s;
+}
+
+.accordion-content {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s, padding 0.3s;
+}
+
+.accordion-item.active .accordion-content {
+  max-height: 500px;
+  padding: 15px 20px;
+}
+
+.accordion-item.active .icon {
+  transform: rotate(45deg);
+}
+.accordion-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.accordion-controls button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  transition: background 0.25s ease, transform 0.1s ease, box-shadow 0.1s ease;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Different color for Collapse */
+#collapseAll {
+  background: #6c757d;
+}
+
+.accordion-controls button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.accordion-controls button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+/* Keyboard focus (accessibility) */
+.accordion-controls button:focus {
+  outline: 2px solid #0056b3;
+  outline-offset: 2px;
+}
