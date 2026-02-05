@@ -1,56 +1,68 @@
-const openBtn = document.querySelector("#openBtn");
-const modal = document.querySelector(".modal");
-const closeBtn = document.querySelector("#closeBtn");
 const modalOverlay = document.querySelector("#modalOverlay");
-const confirmBtn = document.querySelector("#confirmBtn");
+const allModals = document.querySelectorAll(".modal");
+const modalButtons = document.querySelectorAll("[data-modal]");
+const openLoadingBtn = document.querySelector("#openLoading");
 
+// Open specific modal
+function openModal(modalId) {
+  // Hide all modals first
+  allModals.forEach((modal) => modal.style.display = "none");
 
-//function to open modal
+  const modalToOpen = document.getElementById(modalId);
+  modalToOpen.style.display = "block";
 
-function openModal() {
-    modalOverlay.classList.add("active");
-    //prevent body scrolling when modal is open
-    document.body.style.overflow = "hidden";
+  modalOverlay.classList.add("active");
+  document.body.style.overflow = "hidden";
 }
 
-//function to close modal
+// Close all modals
 function closeModal() {
-    modalOverlay.classList.remove("active");
-    //restore body scrolling
-    document.body.style.overflow = "";
+  modalOverlay.classList.remove("active");
+  document.body.style.overflow = "";
 }
 
-//open modal on button click
-openBtn.addEventListener("click", openModal);
-
-//close when close button or overlay is clicked
-closeBtn.addEventListener("click", closeModal);
-
-// close whne confirm button is clicked (for demo)
-confirmBtn.addEventListener("click", () => {
-    alert("Action confirmed!");
-    closeModal();
+// Open modal buttons
+modalButtons.forEach((btn) => {
+  btn.addEventListener("click", () => {
+    const modalId = btn.dataset.modal;
+    openModal(modalId);
+  });
 });
 
-// close when clicking outside modal content
+// Close buttons inside modals
 modalOverlay.addEventListener("click", (e) => {
-    //e.target = what was clicked
-    //event.currentTarget = element with listener (modalOverlay)
-    // only close if clicking directly on overlay, not inside modal
-    if (e.target === modalOverlay) {
-        closeModal();
-    }
+  if (e.target.classList.contains("modal-close")) {
+    closeModal();
+  }
+
+  // Click outside modal
+  if (e.target === modalOverlay) {
+    closeModal();
+  }
 });
 
-//close when excape key is pressed
+// Confirm buttons
+document.querySelectorAll(".confirmBtn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    alert("Confirmed!");
+    closeModal();
+  });
+});
+
+// Escape key
 document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
-        closeModal();
-    }       
+  if (e.key === "Escape" && modalOverlay.classList.contains("active")) {
+    closeModal();
+  }
 });
 
-//alternative: stops on modal content click, but allows overlay click to close
-// modal.addEventListener("click", (e) => {
-//     e.stopPropagation();
-// });  
-//now anyclick on modal content won't trigger overlay click, but clicking outside will still work to close modal
+// Loading modal logic
+openLoadingBtn.addEventListener("click", () => {
+  openModal("loadingModal");
+
+  // Simulate API call / loading
+  setTimeout(() => {
+    closeModal();
+    alert("Loading finished!");
+  }, 3000);
+});

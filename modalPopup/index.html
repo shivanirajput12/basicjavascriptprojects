@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modal Popup</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Modals</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Modal Popup</h1>
-<button id="openBtn">Open Modal</button>
-<div class="modal-overlay" id="modalOverlay">
-    <div class="modal">
-        <span class="modal-close" id="closeBtn">&times;</span>
-        <h2>Welcome!</h2>
-        <p>This is a simple modal popup example.</p>
-        <ul>
-            <li>Clicking the X button</li>
-            <li>Clicking outside the modal</li>
-            <li>Pressing the Escape key</li>
-        </ul>
-        <button id="confirmBtn">Got it!</button>
-    </div>
-</div>
 
-    <script src="script.js"></script>
+  <h1>Advanced Modal System</h1>
+
+  <button data-modal="modal1">Open Welcome Modal</button>
+  <button data-modal="modal2">Open Info Modal</button>
+  <button id="openLoading">Open Loading Modal</button>
+
+  <!-- Overlay -->
+  <div class="modal-overlay" id="modalOverlay">
+
+    <!-- Modal 1 -->
+    <div class="modal" id="modal1">
+      <span class="modal-close">&times;</span>
+      <h2>Welcome!</h2>
+      <p>This is the welcome modal.</p>
+      <button class="confirmBtn">Got it!</button>
+    </div>
+
+    <!-- Modal 2 -->
+    <div class="modal" id="modal2">
+      <span class="modal-close">&times;</span>
+      <h2>Information</h2>
+      <p>This modal shows some important information.</p>
+      <ul>
+        <li>Multiple modals</li>
+        <li>Reusable JS</li>
+        <li>Animations</li>
+      </ul>
+      <button class="confirmBtn">Close</button>
+    </div>
+
+    <!-- Loading Modal -->
+    <div class="modal" id="loadingModal">
+      <h2>Loading...</h2>
+      <div class="spinner"></div>
+      <p>Please wait while we process.</p>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>

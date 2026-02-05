@@ -4,10 +4,12 @@ body {
   background-color: #666;
 }
 
+/* Buttons */
 button {
-  padding: 15px 30px;
-  font-size: 18px;
+  padding: 12px 25px;
+  font-size: 16px;
   cursor: pointer;
+  margin: 5px;
 }
 
 /* Modal Overlay */
@@ -17,15 +19,20 @@ button {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.6);
   display: none;
   justify-content: center;
   align-items: center;
   z-index: 1000;
+
+  /* Fade animation */
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .modal-overlay.active {
   display: flex;
+  opacity: 1;
 }
 
 /* Modal Box */
@@ -36,14 +43,16 @@ button {
   max-width: 500px;
   width: 90%;
   position: relative;
-  animation: slideIn 0.3s ease;
+
+  /* Slide + Fade */
+  transform: translateY(-30px);
+  opacity: 0;
+  transition: all 0.3s ease;
 }
 
-@keyframes slideIn {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
-  }
+.modal-overlay.active .modal {
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* Close Button */
@@ -60,6 +69,19 @@ button {
   color: #000;
 }
 
-.modal h2 {
-  margin-top: 0;
+/* Loading Spinner */
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #333;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 20px auto;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
