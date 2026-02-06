@@ -66,3 +66,25 @@ body {
 .dot.active {
   background: #3498db;
 }
+
+.thumbnails {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 70px;
+  height: 45px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.6;
+  border-radius: 5px;
+  transition: 0.3s;
+}
+
+.thumbnail.active {
+  opacity: 1;
+  border: 2px solid #3498db;
+}

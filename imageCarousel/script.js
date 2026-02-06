@@ -75,3 +75,63 @@ carousel.addEventListener('mouseenter', () => {
 carousel.addEventListener('mouseleave', () => {
     autoPlayInterval = setInterval(nextSlide, 3000);
 });
+
+//keyboard navigation
+document.addEventListener('keydown', (e) => {
+    if(e.key === 'ArrowRight'){
+        nextSlide();
+    } else if(e.key === 'ArrowLeft'){
+        prevSlide();
+    }
+});
+
+//mobile swipe support
+let startX = 0;
+
+carousel.addEventListener('touchstart', e => {
+    startX = e.touches[0].clientX;
+});
+
+carousel.addEventListener('touchend', e => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+        nextSlide(); // swipe left
+    }
+
+    if (endX - startX > 50) {
+        prevSlide(); // swipe right
+    }
+});
+
+// Optional: Add thumbnail navigation
+const thumbnailContainer = document.querySelector('#thumbnailContainer');
+
+slides.forEach((slide, index) => {
+    const thumb = document.createElement('img');
+    thumb.src = slide.src;
+    thumb.classList.add('thumbnail');
+
+    if(index === 0) thumb.classList.add('active');
+
+    thumb.addEventListener('click', () => {
+        goToSlide(index);
+    });
+
+    thumbnailContainer.appendChild(thumb);
+});
+
+// Update thumbnail active state
+function updateCarousel(){
+    const offset = -currentIndex * 100;
+    carouselInner.style.transform = `translateX(${offset}%)`;
+
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+    });
+
+    const thumbnails = document.querySelectorAll('.thumbnail');
+    thumbnails.forEach((thumb, index) => {
+        thumb.classList.toggle('active', index === currentIndex);
+    });
+}
