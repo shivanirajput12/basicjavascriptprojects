@@ -122,3 +122,35 @@ This folder contains 10 simple JavaScript projects. Each project helps you learn
 
 ---
 
+## 7. Image Carousel
+
+**What is it?**
+- An app to show a set of images that you can scroll through. It has navigation buttons, dots, thumbnails, auto-play, keyboard, and swipe support.
+
+**Main things used:**
+- Event listeners for button clicks, keyboard keys, mouse hover, and touch (swipe).
+- Dynamic creation of dots and thumbnails for navigation.
+- Functions to go to next, previous, or specific slide.
+- Auto-play with `setInterval` to change slides automatically.
+- CSS transitions for smooth sliding effect.
+
+**Why these are used:**
+- Event listeners make the carousel interactive for users on desktop and mobile.
+- Dynamic elements (dots, thumbnails) help users see and control which image is shown.
+- Auto-play keeps the carousel moving, but pauses on hover for better control.
+- Keyboard and swipe support make it accessible and easy to use for everyone.
+
+**Keywords explained:**
+- `Event listener`: Lets you run code when something happens (like a click or key press).
+- `setInterval`: Runs code repeatedly after a set time (used for auto-play).
+- `transform`: Moves elements smoothly for sliding effect.
+- `touchstart`/`touchend`: Used for mobile swipe detection.
+- `querySelectorAll`: Selects multiple elements from the page.
+
+**How it works:**
+- Click arrows, dots, or thumbnails to change images.
+- The carousel auto-plays, but stops when you hover.
+- Use keyboard arrows or swipe on mobile to navigate.
+
+---
+
